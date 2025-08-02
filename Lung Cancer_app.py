@@ -183,7 +183,6 @@ with col2:
     st.subheader("👤 Individual Prediction")
 
     st.write("---")
-    st.write(f"### {tr['individual_entry']}")
     age = st.number_input("Age", 0, 100, 50)
     gender = st.selectbox("Gender", ["Male", "Female"])
     smoking = st.selectbox("Smoking", [0, 1])

@@ -210,7 +210,7 @@ with col2:
             "ANXIETY": [int(anxiety)],
             "ALCOHOL CONSUMING": [int(alcohol)],
             "COUGHING": [int(cough)],
-            "SHORTNESS OF BREATH": [int(Short_Breath)],
+            "SHORTNESS_OF_BREATH": [int(Short_Breath)],
             "CHEST PAIN": [int(chest_pain)],
             "SYMPTOM_SCORE": [symptom_score],
             "LIFESTYLE_SCORE": [lifestyle_score]

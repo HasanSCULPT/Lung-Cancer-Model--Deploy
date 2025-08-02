@@ -46,7 +46,7 @@ from fpdf import FPDF
 # ----------------------------
 # ✅ Streamlit Configuration
 # ----------------------------
-st.set_page_config(page_title="Lung Cancer Diagnostics App", layout="centered")
+
 
 # ----------------------------
 # ✅ Convert Image to Base64

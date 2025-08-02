@@ -195,7 +195,7 @@ with col2:
     wheezing = st.selectbox("wheezing", [0, 1])
 
     # Auto-calculated scores
-    symptom_score = sum([cough, short_breath, chest pain, anxiety])
+    symptom_score = sum([cough, short_breath, chestpain, anxiety])
     lifestyle_score = sum([smoking, alcohol])
 
     # Display auto sliders

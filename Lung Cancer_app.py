@@ -182,14 +182,18 @@ with col1:
 with col2:
     st.subheader("👤 Individual Prediction")
 
+    st.write("---")
+    st.write(f"### {tr['individual_entry']}")
     age = st.number_input("Age", 0, 100, 50)
     gender = st.selectbox("Gender", ["Male", "Female"])
-    smoking = st.checkbox("Smoking")
-    alcohol = st.checkbox("Alcohol Consuming")
-    anxiety = st.checkbox("Anxiety")
-    cough = st.checkbox("Coughing")
-    breath = st.checkbox("Shortness of Breath")
-    chest_pain = st.checkbox("Chest Pain")
+    smoking = st.selectbox("Smoking", [0, 1])
+    anxiety = st.selectbox("Anxiety", [0, 1])
+    alcohol = st.selectbox("Alcohol Consuming", [0, 1])
+    peer_pressure = st.selectbox("Peer Pressure", [0, 1])
+    cough = st.selectbox("Coughing", [0, 1])
+    short_breath = st.selectbox("Shortness of Breath", [0, 1])
+    symptom_score = st.slider("SYMPTOM SCORE", 0, 10, 5)
+    lifestyle_score = st.slider("LIFESTYLE SCORE", 0, 5, 2)
 
     # Auto-calculated scores
     symptom_score = sum([cough, breath, chest_pain, anxiety])

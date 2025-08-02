@@ -48,32 +48,53 @@ from fpdf import FPDF
 # ----------------------------
 st.set_page_config(page_title="Lung Cancer Diagnostics App", layout="centered")
 
-# ✅ Background Image & Logo
-@st.cache_data
-def get_base64_of_bin_file(bin_file):
-    try:
-        with open(bin_file, 'rb') as f:
-            return base64.b64encode(f.read()).decode()
-    except FileNotFoundError:
-        return None
+# ----------------------------
+# ✅ Convert Image to Base64
+# ----------------------------
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
 
-def set_png_as_page_bg(png_file):
-    bin_str = get_base64_of_bin_file(png_file)
-    if bin_str:
-        page_bg_img = f"""
-        <style>
-        [data-testid="stAppViewContainer"] > .main {{
-            background-image: url("data:image/png;base64,{bin_str}");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }}
-        </style>
-        """
-        st.markdown(page_bg_img, unsafe_allow_html=True)
+# ✅ Encode JPEG as Base64
+bg_image = get_base64_image("background.jpeg")
 
-set_png_as_page_bg("background.png")
+# ----------------------------
+# ✅ Apply CSS for Background + Bootstrap-Like Container
+# ----------------------------
+page_bg = f"""
+<style>
+[data-testid="stAppViewContainer"] {{
+    background: url("data:image/jpeg;base64,{bg_image}") no-repeat center center fixed;
+    background-size: cover;
+}}
+
+[data-testid="stSidebar"] {{
+    background-color: rgba(255, 255, 255, 0.8);
+}}
+
+.main-container {{
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Helvetica', sans-serif;
+}}
+</style>
+"""
+
+# ✅ Inject CSS into the app
+st.markdown(page_bg, unsafe_allow_html=True)
+
+# ----------------------------
+# ✅ Streamlit Layout
+# ----------------------------
+st.markdown('<div class="main-container">', unsafe_allow_html=True)
+
+st.title("Lung Cancer Diagnostic App")
+st.write("This is a **Bootstrap-like container** styled using CSS inside Streamlit.")
+st.write("The background image is applied using **base64** and custom CSS.")
 
 # ✅ Load Model & Features
 pipeline = joblib.load("lung_cancer_pipeline.pkl")
